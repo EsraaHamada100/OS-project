@@ -5,8 +5,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ReaderWriter {
     static Semaphore readLock = new Semaphore(1, true);
-    static Semaphore writeLock = new Semaphore(1, true);
+    static Semaphore readWriteLock = new Semaphore(1, true);
     static AtomicBoolean continueReading = new AtomicBoolean(true);
-//    static AtomicBoolean isWritting = new AtomicBoolean(false);
     static int readCount = 0;
 }

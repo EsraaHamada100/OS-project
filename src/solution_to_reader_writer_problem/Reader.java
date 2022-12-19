@@ -4,13 +4,15 @@ class Reader implements Runnable {
     @Override
     public void run() {
         try {
+        	// false => !false => true
         	while(!ReaderWriter.continueReading.get());
             //Acquire Section
         	ReaderWriter.readLock.acquire();
         	ReaderWriter.readCount++;
             if (ReaderWriter.readCount == 1) {
-//            	System.out.println("Reader process ask to acquire");
-            	ReaderWriter.writeLock.acquire();
+            	System.out.println(Thread.currentThread().getName());
+            	System.out.println("Reader process ask to acquire");
+            	ReaderWriter.readWriteLock.acquire();
             }
             ReaderWriter.readLock.release();
 
@@ -23,7 +25,7 @@ class Reader implements Runnable {
             ReaderWriter.readLock.acquire();
             ReaderWriter.readCount--;
             if(ReaderWriter.readCount == 0) {
-            	ReaderWriter.writeLock.release();
+            	ReaderWriter.readWriteLock.release();
             }
             ReaderWriter.readLock.release();
         } catch (InterruptedException e) {

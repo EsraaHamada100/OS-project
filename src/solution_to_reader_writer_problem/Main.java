@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         Reader read = new Reader();
         Writer write = new Writer();
-        for(int i = 0 ; i < 10 ; i++) {
+        for(int i = 0 ; i < 100 ; i++) {
 
             Thread t1 = new Thread(read);
             t1.setName("thread1");
@@ -17,13 +17,13 @@ public class Main {
             Thread t5 = new Thread(write);
             t5.setName("thread5");
             t1.start();
-            Thread.sleep(1);
+            Thread.sleep(10);
             t3.start();
-            Thread.sleep(1);
+            Thread.sleep(10);
             t2.start();
-            Thread.sleep(1);
+            Thread.sleep(10);
             t4.start();
-            Thread.sleep(1);
+            Thread.sleep(10);
             t5.start();
             Thread.sleep(1);
         }
