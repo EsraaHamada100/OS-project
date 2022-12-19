@@ -9,4 +9,5 @@ public class ReaderWriter {
     static AtomicBoolean continueReading = new AtomicBoolean(true);
 //    static AtomicBoolean isWritting = new AtomicBoolean(false);
     static int readCount = 0;
+    static int file_data;
 }

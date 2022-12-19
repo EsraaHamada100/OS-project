@@ -20,13 +20,16 @@ class Reader implements Runnable {
 
             //Reading section
             System.out.println("Thread "+Thread.currentThread().getName() + " is READING");
-            File myFile = new File("D:\\study\\real_world_þþsolution_to_reader_writer_problem\\src\\solution_to_reader_writer_problem\\my_file.txt");
+            File myFile = new File("D:\\study\\real_world_þþsolution_to_reader_writer_problem\\src\\solution_to_reader_writer_problem\\my_file2.txt");
             Scanner reader = new Scanner(myFile);
+            String file_data = "";
             while(reader.hasNextLine()) {
             	String data = reader.nextLine();
+            	file_data += data;
             	System.out.println(data);
             }
             reader.close();
+            ReaderWriter.file_data = Integer.parseInt(file_data);
             System.out.println("Thread "+Thread.currentThread().getName() + " has FINISHED READING");
 
             //Releasing section
@@ -36,6 +39,7 @@ class Reader implements Runnable {
             	ReaderWriter.writeLock.release();
             }
             ReaderWriter.readLock.release();
+            
         } catch (InterruptedException e) {
             System.out.println(e.getMessage());
         } catch (FileNotFoundException e) {

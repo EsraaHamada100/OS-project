@@ -17,8 +17,15 @@ class Writer implements Runnable {
             ReaderWriter.continueReading.set(true);
             // write in to file section
             System.out.println("Thread "+Thread.currentThread().getName() + " is WRITING");
-            FileWriter writer = new FileWriter("D:\\study\\real_world_þþsolution_to_reader_writer_problem\\src\\solution_to_reader_writer_problem\\my_file.txt", true);
-            writer.write("java ");
+
+            if(ReaderWriter.file_data == 0) {
+            	System.out.println("Sorry, no tickets are available.");
+            	ReaderWriter.writeLock.release();
+            	return ;
+            }
+            FileWriter writer = new FileWriter("D:\\study\\real_world_þþsolution_to_reader_writer_problem\\src\\solution_to_reader_writer_problem\\my_file2.txt");
+            --ReaderWriter.file_data;
+            writer.write(String.valueOf(ReaderWriter.file_data));
             writer.close();
             // The end of  writing and the release section
             System.out.println("Thread "+Thread.currentThread().getName() + " has finished WRITING");
